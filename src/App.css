@@ -1,0 +1,23 @@
+body {
+  background: url(https://images.pexels.com/photos/1431822/pexels-photo-1431822.jpeg?cs=srgb&dl=pexels-brett-sayles-1431822.jpg&fm=jpg);
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.weather-box {
+  border: 3px solid white;
+  padding: 50px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.547);
+  width: 30vw;
+  margin-bottom: 15px;
+}
