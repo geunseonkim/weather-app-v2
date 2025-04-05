@@ -1,14 +1,12 @@
 import React from "react";
 
 const WeatherBox = ({ weather, city, myLocation }) => {
-  //   console.log("weather", weather);
   return (
     <div className="weather-box">
       <div className="weather-box-left">
         {/* <h2>{weather && weather.name}</h2> */}
         <div>
           <h2>{weather?.name || city}</h2>
-          {/* <h6>{weather?.sys.country}</h6> */}
 
           {myLocation ? (
             <h6>

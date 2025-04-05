@@ -12,7 +12,6 @@ const buttonCities = ["Sydney", "Melbourne"];
 function App() {
   const [weather, setWeather] = useState(null);
   const [cityWeather, setCityWeather] = useState({});
-  // const [openedCard, setOpenedCard] = useState(null);
   const [myLocation, setMyLocation] = useState(null);
   const [loading, setLoading] = useState(false);
   const [selectedButtonCity, setSelectedButtonCity] = useState(null);
@@ -30,7 +29,6 @@ function App() {
   }, []);
 
   const getCurrentLocation = useCallback(() => {
-    // console.log("getCurrentLocation");
     navigator.geolocation.getCurrentPosition(success, error);
   }, [success, error]);
 
@@ -38,9 +36,8 @@ function App() {
     try {
       let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
       setLoading(true);
-      let response = await fetch(url); // 비동기
+      let response = await fetch(url);
       let data = await response.json();
-      // console.log("data", data);
       setWeather(data);
       setMyLocation(data.name);
       setLoading(false);
@@ -57,7 +54,6 @@ function App() {
       let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
       let response = await fetch(url);
       let data = await response.json();
-      // console.log("data", data);
       setCityWeather((prev) => ({ ...prev, [city]: data }));
       setLoading(false);
     } catch (error) {
@@ -65,21 +61,6 @@ function App() {
       setLoading(false);
     }
   };
-
-  // const getWeatherByCity = async (city) => {
-  //   if (cityWeather[city]) {
-  //     console.log("city", city);
-  //     setOpenedCard((prev) => (prev === city ? null : city));
-  //     return;
-  //   }
-
-  //   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3b56745dd240621d3eaad2aac3d8a827&units=metric`;
-  //   let response = await fetch(url);
-  //   let data = await response.json();
-  //   console.log("data", data);
-  //   setCityWeather((prev) => ({ ...prev, [city]: data }));
-  //   setOpenedCard(city);
-  // };
 
   const handleCityClick = (city) => {
     setSelectedButtonCity((prev) => (prev === city ? null : city));
@@ -115,21 +96,7 @@ function App() {
             </div>
             <div>
               <WeatherBox weather={weather} myLocation={myLocation} />
-              {/* 버튼 안 쓰려고 먼저 만들었지만 결국 중복 코드.
-  {cities.map((city) => (
-    <div key={city}>
-      <WeatherBox weather={cityWeather[city]} city={city} />
-    </div>
-  ))} */}
-              {/* 카드를 눌렀을 때만 데이터가 뜸. 다른 도시의 데이터를 확인하면 이전 도시 데이터를 볼 수 없음.
-  {cities.map((city) => (
-    <div key={city} onClick={() => getWeatherByCity(city)}>
-      <WeatherBox
-        weather={openedCard === city ? cityWeather[city] : null}
-        city={city}
-      />
-    </div>
-  ))} */}
+
               {Object.entries(cityWeather).map(([city, weather]) => (
                 <WeatherBox key={city} weather={weather} title={city} />
               ))}
