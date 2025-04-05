@@ -115,14 +115,12 @@ function App() {
             </div>
             <div>
               <WeatherBox weather={weather} myLocation={myLocation} />
-
               {/* 버튼 안 쓰려고 먼저 만들었지만 결국 중복 코드.
   {cities.map((city) => (
     <div key={city}>
       <WeatherBox weather={cityWeather[city]} city={city} />
     </div>
   ))} */}
-
               {/* 카드를 눌렀을 때만 데이터가 뜸. 다른 도시의 데이터를 확인하면 이전 도시 데이터를 볼 수 없음.
   {cities.map((city) => (
     <div key={city} onClick={() => getWeatherByCity(city)}>
@@ -132,7 +130,6 @@ function App() {
       />
     </div>
   ))} */}
-
               {Object.entries(cityWeather).map(([city, weather]) => (
                 <WeatherBox key={city} weather={weather} title={city} />
               ))}
@@ -141,6 +138,7 @@ function App() {
                 buttonCities={buttonCities}
                 onCityClick={handleCityClick}
                 selectedButtonCity={selectedButtonCity}
+                cityWeather={cityWeather}
               />
             </div>
           </div>
