@@ -1,23 +1,105 @@
-body {
-  background: url(https://images.pexels.com/photos/1431822/pexels-photo-1431822.jpeg?cs=srgb&dl=pexels-brett-sayles-1431822.jpg&fm=jpg);
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
+.containerr {
+  background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: space-around;
+  min-height: 100vh;
+  padding: 0px 250px;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
+.containerr h1 {
+  color: rgb(53, 37, 200);
+  padding-top: 60px;
+  font-size: 40px;
+  font-weight: 600;
+  margin: 0px 10px;
+}
+
+.containerr p {
+  /* border: 1px solid white; */
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0px 10px;
+  color: gray;
+  padding: 5px 10px;
+  font-size: 17px;
+}
+
+.container-contents {
+  margin-top: 15px;
 }
 
 .weather-box {
-  border: 3px solid white;
-  padding: 50px;
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.547);
-  width: 30vw;
-  margin-bottom: 15px;
+  display: flex;
+  /* border: 3px solid white; */
+  padding: 15px 15px;
+  height: 125px;
+  border-radius: 20px;
+  background: rgb(53, 37, 200);
+  margin: 15px 10px;
+}
+
+.weather-box-left {
+  /* border: 1px solid white; */
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+}
+
+.weather-box-left h2 {
+  margin: 0px;
+  font-weight: 600;
+  color: white;
+}
+
+.weather-box-left h6 {
+  margin: 0px;
+  color: gray;
+}
+
+.weather-box-right {
+  /* border: 1px solid white; */
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  text-align: right;
+  color: white;
+}
+
+.weather-box-right h2 {
+  font-size: 50px;
+  font-weight: 200;
+  margin: 0px;
+}
+
+.weather-box-right h6 {
+  margin: 0px;
+}
+
+.weather-button-wrap {
+  margin: 5px 5px;
+  margin-bottom: 70px;
+}
+
+.weather-button {
+  margin: 0px 5px;
+}
+
+@media (max-width: 767px) {
+  .containerr {
+    padding: 15px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .containerr {
+    padding: 50px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .containerr {
+    padding: 100px;
+  }
 }

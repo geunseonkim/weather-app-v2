@@ -137,3 +137,6 @@ dist
 
 # history
 .history
+
+#apiKey
+.env
