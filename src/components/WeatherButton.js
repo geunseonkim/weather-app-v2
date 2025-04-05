@@ -1,12 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-const WeatherButton = ({
-  buttonCities,
-  onCityClick,
-  selectedButtonCity,
-  cityWeather,
-}) => {
+const WeatherButton = ({ buttonCities, onCityClick, cityWeather }) => {
   return (
     <div>
       <div className="weather-button-wrap">
@@ -15,14 +10,8 @@ const WeatherButton = ({
             className="weather-button"
             key={city}
             onClick={() => onCityClick(city)}
-            variant={
-              Object.keys(cityWeather).includes(city)
-                ? "dark"
-                : selectedButtonCity === city
-                ? "light"
-                : "dark"
-            }
-            disabled={Object.keys(cityWeather).includes(city)}
+            variant={cityWeather[city] ? "light" : "dark"}
+            disabled={cityWeather[city]}
           >
             {city}
           </Button>

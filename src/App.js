@@ -6,15 +6,14 @@ import WeatherButton from "./components/WeatherButton";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
-const cities = ["Wellington", "Christchurch"];
-const buttonCities = ["Sydney", "Melbourne"];
+const cities = ["Wellington"];
+const buttonCities = ["Christchurch", "Sydney", "Melbourne"];
 
 function App() {
   const [weather, setWeather] = useState(null);
   const [cityWeather, setCityWeather] = useState({});
   const [myLocation, setMyLocation] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [selectedButtonCity, setSelectedButtonCity] = useState(null);
   const [apiError, setApiError] = useState("");
 
   const success = useCallback((position) => {
@@ -63,8 +62,14 @@ function App() {
   };
 
   const handleCityClick = (city) => {
-    setSelectedButtonCity((prev) => (prev === city ? null : city));
-    getWeatherByCity(city);
+    if (cityWeather[city]) {
+      setCityWeather((prev) => {
+        const { [city]: cityInfo, ...newCityWeather } = prev;
+        return newCityWeather;
+      });
+    } else {
+      getWeatherByCity(city);
+    }
   };
 
   useEffect(() => {
@@ -104,7 +109,6 @@ function App() {
               <WeatherButton
                 buttonCities={buttonCities}
                 onCityClick={handleCityClick}
-                selectedButtonCity={selectedButtonCity}
                 cityWeather={cityWeather}
               />
             </div>
