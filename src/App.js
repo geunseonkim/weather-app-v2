@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WeatherBox from "./components/WeatherBox";
@@ -16,23 +16,28 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState("");
 
-  const success = useCallback((position) => {
+  const getCurrentLocation = () => {
+    navigator.geolocation.getCurrentPosition(success, error);
+  };
+
+  const success = (position) => {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
     // console.log("현재 위치", lat, lon);
     getWeatherByCurrentLocation(lat, lon);
-  }, []);
+  };
 
-  const error = useCallback((error) => {
+  const error = (error) => {
     console.log("location info error", error.message);
-  }, []);
-
-  const getCurrentLocation = useCallback(() => {
-    navigator.geolocation.getCurrentPosition(success, error);
-  }, [success, error]);
+  };
 
   const getWeatherByCurrentLocation = async (lat, lon) => {
     try {
+      if (!(lat && lon)) {
+        setLoading(true);
+        setApiError("cannot find location");
+        return;
+      }
       setLoading(true);
       let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
       let response = await fetch(url);
@@ -77,7 +82,7 @@ function App() {
     cities.forEach((city) => {
       getWeatherByCity(city);
     });
-  }, [getCurrentLocation]);
+  }, []);
 
   return (
     <div>
